@@ -8,8 +8,7 @@ app.use(formidable()); //attivo formidable
 app.use(cors()); //attivo cors
 
 const api_key = process.env.MAILGUN_API_KEY; /* VOTRE CLÉ API */
-const domain = process.env.MAILGUN_DOMAIN;
-("sandbox16ad35fd26ea45afa038dfc0dfc87611.mailgun.org"); /*domain sand man*/
+const domain = process.env.MAILGUN_DOMAIN; /*domain sand man*/
 const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
 app.post("/form", (req, res) => {
