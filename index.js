@@ -7,15 +7,14 @@ const app = express(); //inzializzo server
 app.use(formidable()); //attivo formidable
 app.use(cors()); //attivo cors
 
-const api_key = process.env.MAILGUN_api_key; /* VOTRE CLÉ API */
-const domain = process.env.MAILGUN_domain; /*domain sand man*/
-const mailgun = require("mailgun-js")({
-  apiKey: api_key,
-  domain: domain,
-});
+const api_key = process.env.MAILGUN_API_KEY; /* VOTRE CLÉ API */
+const domain = process.env.MAILGUN_DOMAIN;
+("sandbox16ad35fd26ea45afa038dfc0dfc87611.mailgun.org"); /*domain sand man*/
+const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
 app.post("/form", (req, res) => {
   const { firstname, lastname, email, subject, message } = req.fields;
+  console.log(req.fields);
   const data = {
     from: `${firstname} ${lastname} <${email}>`,
     to: "mirkochiavaroli@gmail.com" /* EMAIL MAILGUN */,
@@ -35,6 +34,6 @@ app.all("*", (req, res) => {
   res.status(404).json({ error: "Page not found" });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
   console.log("Server has Started");
 });
